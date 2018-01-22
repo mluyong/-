@@ -6,59 +6,12 @@
             <el-button type="danger" plain>下架</el-button>
             <el-button type="danger" plain>发布信息</el-button>
         </el-col>
-        <!-- <el-row :gutter="20">
-            <el-col :span="8"> wqwqw</el-col>
-            <el-col :span="16" label="rwerwe">
-                <el-input placeholder="请输入宝贝名称" v-model="input2"></el-input>
-            </el-col>
-            <el-col :span="8"> wqwqw</el-col>
-            <el-col :span="16" label="rwerwe">
-                <el-input placeholder="请选择日期" suffix-icon="el-icon-date" v-model="input2">
-                    <template>
-                  <span>skaskdhnsa</span>
-                </template></el-input>
-            </el-col>
-        </el-row> -->
-             <!-- <el-form :label-position="labelPosition" label-width="120px" :model="formLabelAlign">
-                <el-form-item label="宝贝名称">
-                    <el-input></el-input>
-                </el-form-item>
-                <el-form-item label="宝贝介绍">
-                    <el-input></el-input>
-                </el-form-item>
-                <el-form-item label="宝贝款式价格">
-                    <div class="el-input__inner">
-                        <ul>
-                            <li>款式名称</li>
-                            <li>颜色</li>
-                            <li>价格(万)</li>
-                        </ul>
-                        <div class="product-btn"><span>+</span></div>
-                    </div>
-                </el-form-item>
-                <el-form-item label="经销商参考价">
-                    <el-input value="万"></el-input>
-                </el-form-item>
-                <el-form-item label="厂商参考价">
-                    <el-input value="万"></el-input>
-                </el-form-item>
-                <el-form-item label="全款购车">
-                    <el-input ></el-input>
-                </el-form-item>
-                <el-form-item label="贷款购车">
-                    <el-input ></el-input>
-                </el-form-item>
-                <el-form-item label="商品数量">
-                    <el-input ></el-input>
-                </el-form-item>
-                <el-form-item label="上传主图">
-                    <div class="el-input__inner">
-                         
-                    </div>
-                </el-form-item>
-            </el-form> -->
 
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="150px" class="demo-ruleForm used-pr-conter">
+            <el-form-item label="">
+              <h2 align="center">发布宝贝</h2>
+            </el-form-item>
+            
             <el-form-item label="宝贝名称" prop="name">
                 <el-input v-model="ruleForm.name"></el-input>
             </el-form-item>
@@ -89,12 +42,12 @@
                     <template slot="append">万</template>
                 </el-input>
             </el-form-item>
-            <el-form-item label="贷款购车" prop="name">
-                <el-input placeholder="请输入内容" v-model="ruleForm.name">
+            <el-form-item class="car-two" label="贷款购车" prop="name">
+                <el-input class="car-two-left" placeholder="请输入内容" v-model="ruleForm.name">
                     <template slot="append">万</template>
                 </el-input>
-                <el-input placeholder="请输入内容" v-model="ruleForm.name">
-                    <template slot="append">万</template>
+                <el-input class="car-two-right" placeholder="请输入内容" v-model="ruleForm.name">
+                    <template slot="append">期</template>
                 </el-input>
             </el-form-item>
             <el-form-item label="商品数量" prop="name">
@@ -110,11 +63,7 @@
                     <p><i @click="addDomain()" class="el-icon-circle-plus"></i></p>
                 </div>
             </el-form-item>
-            <el-form-item label="上传主图">
-                <div class="used-pr-conter-upload">
-                    <quill-editor v-model="infoForm.a_content" ref="myQuillEditor" class="editer"  @ready="onEditorReady($event)"></quill-editor>
-                </div>
-            </el-form-item>
+            
             <el-form-item label="上传主图">
                 <div class="used-pr-conter-upload">
                     <p><span>图片大小：750*420（px）</span><span>上传格式限：jpg png </span><span>文件大小限：10M</span></p>
@@ -124,6 +73,11 @@
                     <el-dialog :visible.sync="dialogVisible" size="tiny">
                     <img width="100%" :src="dialogImageUrl" alt="">
                     </el-dialog>
+                </div>
+            </el-form-item>
+            <el-form-item label="详情设置"><br>
+                <div class="used-pr-conter-quill">
+                    <quill-editor ref="myTextEditor" v-model="content" :config="editorOption"></quill-editor>
                 </div>
             </el-form-item>
             <el-form-item>
@@ -136,10 +90,14 @@
 </template>
 
 <script>
-import quillEditor from "../../components/QuillEditor";
+import { quillEditor } from "vue-quill-editor";
 export default {
   data() {
     return {
+      content: "<p>Hello BBK</p>",
+      editorOption: {
+        // something config
+      },
       infoForm: {
         a_title: "",
         a_source: "",
@@ -239,10 +197,12 @@ export default {
   },
   computed: {
     editor() {
-      return this.$refs.myQuillEditor.quill;
+      return this.$refs.myTextEditor.quillEditor;
     }
   },
-    components: { quillEditor }
+  components: {
+    quillEditor
+  }
 };
 </script>
 
@@ -263,26 +223,23 @@ export default {
   line-height: 24px;
   margin: 0 10px 0 20px;
 }
-.used-pr-conter {
-  padding: 0 300px;
-}
 .used-pr .el-input,
 .used-pr .el-textarea {
-  width: 450px;
+  width: 600px;
   border-radius: 2px;
 }
 
 .used-pr .used-pr-conter-money {
-  width: 450px;
+  width: 600px;
   border: 1px solid #cccccc;
   border-radius: 2px;
 }
 .used-pr .used-pr-conter-money div:nth-child(3n-2) {
-  width: 168px;
+  width: 200px;
   padding-right: 60px;
 }
 .used-pr .used-pr-conter-money div {
-  width: 110px;
+  width: 135px;
   display: inline-block;
   background-color: #999999;
   font-size: 14px;
@@ -290,7 +247,7 @@ export default {
   line-height: 24px;
   border-radius: 2px;
   padding-left: 10px;
-  margin: 0 10px;
+  margin: 0 20px;
 }
 .used-pr .used-pr-conter-money > p {
   width: 100%;
@@ -303,7 +260,7 @@ export default {
   background-color: white;
 }
 .used-pr .used-pr-conter-upload {
-  width: 450px;
+  width: 600px;
   background-color: #f9f9f9;
   border: 1px solid #cccccc;
 }
@@ -341,5 +298,34 @@ export default {
 }
 .used-pr .used-pr-conter .el-upload--picture-card {
   border: none;
+}
+.used-pr .used-pr-conter-quill{
+  width:  670px !important;
+  margin: 0 -66px;;
+}
+.used-pr .used-pr-conter-quill p{
+  padding-bottom: 20px;
+}
+.used-pr .el-form{
+  width: 55%;
+  margin: 0 auto;
+}
+.used-pr .el-form .car-two .car-two-left{
+  width: 350px;
+}
+.used-pr .el-form .car-two .car-two-right{
+  width: 225px;
+  margin-left: 20px
+}
+.used-pr .el-form .el-form-item:first-child{
+  margin: 0px;
+}
+.used-pr .el-form .el-form-item:first-child h2{
+  width: 600px;
+  font-size: 18px;
+  font-weight: normal;
+  padding-top: 65px;
+  padding-bottom: 5px;;
+  color:  #333333;
 }
 </style>

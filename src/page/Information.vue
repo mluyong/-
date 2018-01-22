@@ -16,7 +16,7 @@
             <el-button type="danger" plain>发布信息</el-button>
         </el-col>
         <el-table ref="multipleTable" align="center" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
-            <el-table-column align="center"  type="selection" width="25"> </el-table-column>
+            <el-table-column align="right"  type="selection" width="40"> </el-table-column>
             <el-table-column align="center" prop="type" label="产品种类" >
             </el-table-column>
             <el-table-column align="center" width="400" label="信息名称">

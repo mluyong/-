@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Common from '@/components/Common';
 import Information from '@/page/Information';
 import WarehourseGoods from '@/page/WarehourseGoods';
+import ReleaseBaby from '../page/ReleaseBaby.vue'
 
 import CarOrderAdmin from '../page/car/OrderAdmin.vue'
 import CarOrderAdminDetail from '../page/car/OrderAdminDetail.vue'
@@ -48,7 +49,9 @@ export default new Router({
         { path: 'SecureProductRelease', name: 'SecureProductRelease', component: SecureProductRelease },
         
         { path: 'CarLoanProductRelease', name: 'CarLoanProductRelease', component: CarLoanProductRelease }, 
-      ]
-    }
+        {path:'/ReleaseBaby', name: 'ReleaseBaby',component:ReleaseBaby},
+    ]
+    },
+    
   ]
 })

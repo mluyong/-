@@ -1,0 +1,77 @@
+* {
+    box-sizing: border-box !important;
+    margin: 0px;
+    padding: 0px;
+  }
+  .clearfix:after{
+    content:""; 
+    height:0;
+    line-height:0;
+    display:block;
+    visibility:hidden;
+    clear:both;
+}
+.colorE1{
+  color:#E1731A;
+}
+.red{
+  color: red;
+}
+.clearfix{
+    zoom:1;
+}
+  div.cell {
+    padding: 0px !important;
+  }
+
+  body {
+    background-color: #ebecf2;
+  }
+
+  .common .el-badge__content.is-fixed {
+    top: 15px;
+  }
+
+  th div.cell {
+    color: #333333 !important;
+  }
+
+.All .el-tabs {
+    padding: 10px 0px;
+  }
+
+.All .el-tabs div .el-tabs__nav-scroll {
+    padding-left: 50px;
+  }
+.All .el-tabs div .el-tabs__nav-scroll .el-tabs__nav {
+    padding-bottom: 5px;
+  }
+
+.All div.el-tabs__item.is-active {
+    color: #fe5621;
+}
+
+.All .el-tabs__item:hover {
+    color: #fe5621 !important;
+    cursor: pointer;
+}
+.All div.el-tabs__active-bar {
+    background-color: #fe5621;
+}
+.All input.el-input__inner{
+    /* width: 230px !important; */
+    height: 30px !important;
+}
+.All .el-date-editor{
+    width: 250px !important;
+}
+.ReleaseBaby .avatar-uploader .el-upload {
+  width: 100% !important;
+  height: 100%;
+  background-color: white;
+  margin: 0 auto;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
