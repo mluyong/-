@@ -59,19 +59,54 @@
     background-color: #fe5621;
 }
 .All input.el-input__inner{
-    /* width: 230px !important; */
     height: 30px !important;
 }
 .All .el-date-editor{
     width: 250px !important;
 }
+.ReleaseBaby .ReleaseBaby-conter-one>div{
+  width: calc( 100% / 4 - 22px );
+  height: 125px;
+  margin: 20px 8px 20px 10px;
+  display: inline-block;
+}
+.ReleaseBaby .ReleaseBaby-conter-one>div .el-upload{
+  background-color: white;
+}
+.ReleaseBaby .ReleaseBaby-conter-one>div:nth-of-type(1){
+  width: 520px;
+  height: 260px;
+  display: block;
+  margin: 10px auto 20px auto;
+}
 .ReleaseBaby .avatar-uploader .el-upload {
   width: 100% !important;
   height: 100%;
-  background-color: white;
   margin: 0 auto;
-  border-radius: 6px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+}
+.ReleaseBaby .avatar-uploader .el-upload i{
+  line-height: 135px;
+  font-size: 66px;
+  cursor: pointer;
+  color:  #D3D3D3;
+}
+.ReleaseBaby-conter-two .el-upload--picture-card{
+  width: 125px;
+  height: 125px;
+  border-radius: 0px;
+  line-height: 125px;
+}
+.ReleaseBaby-conter-two .el-upload-list--picture-card .el-upload-list__item{
+  width: 125px;
+  height: 125px;
+  border-radius: 0px;
+}
+table {
+  width: 100% !important;
+}
+.el-table__body, .el-table__footer, .el-table__header{
+  table-layout: auto !important;
 }

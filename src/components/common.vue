@@ -121,7 +121,6 @@ export default {
 }
 .el-header .el-row .el-col:last-child {
   text-align: right;
-  /* min-width: 278px; */
 }
 .el-header .el-row .el-col:last-child i{
     padding: 0 10px; 
@@ -130,7 +129,6 @@ export default {
   background-color: #ffffff;
   color: #333;
   text-align: center;
-  min-height: 500px;
 }
 
 .el-main {
