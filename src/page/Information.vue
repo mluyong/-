@@ -1,9 +1,9 @@
 <template>
     <div class="information">
         <el-menu :default-active="activeIndex" active-text-color="#FE5621" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-            <el-menu-item index="1">处理中心</el-menu-item>
-            <el-menu-item index="2">订单管理</el-menu-item>
-            <el-menu-item index="3">订单管理</el-menu-item> 
+            <el-menu-item index="1">最新咨询</el-menu-item>
+            <el-menu-item index="2">用车技巧</el-menu-item>
+            <el-menu-item index="3">降价信息</el-menu-item> 
             <el-menu-item v-for="(domain, index) in dynamicValidateForm.domains" :index="index" :key="domain.key">
                 <span >{{index}}</span><i @click.prevent="removeDomain(domain)" class="el-icon-circle-close"></i>
             </el-menu-item>
@@ -70,7 +70,10 @@ export default {
             value: ""
           }
         ]
-      }
+      },
+      "activeIndex":"",
+      "handleSelect":"",
+      "index":1
     };
   },
   methods: {
@@ -138,6 +141,8 @@ export default {
   font-size: 14px;
   line-height: 24px;
   margin: 0 10px 0 20px;
+  background-color: #fe5621;
+  color: #fefefe;
 }
 .information-name-img {
   width: 100px;
@@ -181,5 +186,9 @@ export default {
     color: white;
     border-radius: 4px;
     background-color: #fe5621;
+    cursor: pointer;
+}
+.el-icon-circle-close{
+  cursor: pointer;
 }
 </style>

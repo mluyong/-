@@ -36,13 +36,8 @@
             </el-col>
         </el-row>
         <el-tabs v-model="activeName" @tab-click="handleClick">
-             <el-tab-pane label="全部" name="first"></el-tab-pane>
-             <el-tab-pane label="已付款" name="second"></el-tab-pane>
-             <el-tab-pane label="待付款" name="third"></el-tab-pane>
-             <el-tab-pane label="待退款" name="fourth"></el-tab-pane>
-             <el-tab-pane label="已完成" name="fifth"></el-tab-pane>
-        </el-tabs>
-        <el-table ref="multipleTable" align="center" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange()">
+             <el-tab-pane label="全部" name="first">
+                <el-table ref="multipleTable" align="center" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange()">
             <el-table-column align="center" prop="orderID" label="订单编号"></el-table-column>
             <el-table-column align="center" width="400" label="信息名称">
                 <template slot-scope="scope">
@@ -64,6 +59,105 @@
                 </template>
             </el-table-column>
         </el-table>
+             </el-tab-pane>
+             <el-tab-pane label="已付款" name="second">
+                <el-table ref="multipleTable" align="center" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange()">
+            <el-table-column align="center" prop="orderID" label="订单编号"></el-table-column>
+            <el-table-column align="center" width="400" label="信息名称">
+                <template slot-scope="scope">
+                    <div class="UsedorderAdmin-name-img"><img :src="scope.row.image" alt=""></div>
+                    <div class="UsedorderAdmin-name-center">
+                         <h5>{{scope.row.name.title}}</h5>
+                         <p>{{scope.row.name.text}}</p>
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="date" label="创建时间"> </el-table-column>
+            <el-table-column align="center" prop="collect" label="收藏" >
+            </el-table-column>
+            <el-table-column align="center" prop="Clicks" label="点击量" >
+            </el-table-column>
+            <el-table-column align="center" label="操作" >
+                <template slot-scope="scope">
+                    <p class="UsedorderAdmin-operate">{{scope.row.operate}}</p>
+                </template>
+            </el-table-column>
+        </el-table>
+             </el-tab-pane>
+             <el-tab-pane label="待付款" name="third">
+                <el-table ref="multipleTable" align="center" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange()">
+            <el-table-column align="center" prop="orderID" label="订单编号"></el-table-column>
+            <el-table-column align="center" width="400" label="信息名称">
+                <template slot-scope="scope">
+                    <div class="UsedorderAdmin-name-img"><img :src="scope.row.image" alt=""></div>
+                    <div class="UsedorderAdmin-name-center">
+                         <h5>{{scope.row.name.title}}</h5>
+                         <p>{{scope.row.name.text}}</p>
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="date" label="创建时间"> </el-table-column>
+            <el-table-column align="center" prop="collect" label="收藏" >
+            </el-table-column>
+            <el-table-column align="center" prop="Clicks" label="点击量" >
+            </el-table-column>
+            <el-table-column align="center" label="操作" >
+                <template slot-scope="scope">
+                    <p class="UsedorderAdmin-operate">{{scope.row.operate}}</p>
+                </template>
+            </el-table-column>
+        </el-table>
+             </el-tab-pane>
+             <el-tab-pane label="待退款" name="fourth">
+                <el-table ref="multipleTable" align="center" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange()">
+            <el-table-column align="center" prop="orderID" label="订单编号"></el-table-column>
+            <el-table-column align="center" width="400" label="信息名称">
+                <template slot-scope="scope">
+                    <div class="UsedorderAdmin-name-img"><img :src="scope.row.image" alt=""></div>
+                    <div class="UsedorderAdmin-name-center">
+                         <h5>{{scope.row.name.title}}</h5>
+                         <p>{{scope.row.name.text}}</p>
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="date" label="创建时间"> </el-table-column>
+            <el-table-column align="center" prop="collect" label="收藏" >
+            </el-table-column>
+            <el-table-column align="center" prop="Clicks" label="点击量" >
+            </el-table-column>
+            <el-table-column align="center" label="操作" >
+                <template slot-scope="scope">
+                    <p class="UsedorderAdmin-operate">{{scope.row.operate}}</p>
+                </template>
+            </el-table-column>
+        </el-table>
+             </el-tab-pane>
+             <el-tab-pane label="已完成" name="fifth">
+                <el-table ref="multipleTable" align="center" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange()">
+            <el-table-column align="center" prop="orderID" label="订单编号"></el-table-column>
+            <el-table-column align="center" width="400" label="信息名称">
+                <template slot-scope="scope">
+                    <div class="UsedorderAdmin-name-img"><img :src="scope.row.image" alt=""></div>
+                    <div class="UsedorderAdmin-name-center">
+                         <h5>{{scope.row.name.title}}</h5>
+                         <p>{{scope.row.name.text}}</p>
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column align="center" prop="date" label="创建时间"> </el-table-column>
+            <el-table-column align="center" prop="collect" label="收藏" >
+            </el-table-column>
+            <el-table-column align="center" prop="Clicks" label="点击量" >
+            </el-table-column>
+            <el-table-column align="center" label="操作" >
+                <template slot-scope="scope">
+                    <p class="UsedorderAdmin-operate">{{scope.row.operate}}</p>
+                </template>
+            </el-table-column>
+        </el-table>
+             </el-tab-pane>
+        </el-tabs>
+       
     </div>
 </template>
 

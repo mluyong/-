@@ -75,18 +75,18 @@
                       </div>
                     </div>
                   </td>
-                  <td class="el-table_1_column_11 is-center ">
-                    <div class="cell">2016-05-02</div>
+                  <td class="el-table_1_column_11 is-center" >
+                    <div class="cell">2018-01-24</div>
                   </td>
                   <td class="el-table_1_column_12 is-center ">
-                    <div class="cell">560</div>
+                    <div class="cell">上架</div>
                   </td>
                   <td class="el-table_1_column_13 is-center ">
-                    <div class="cell">6200</div>
+                    <div class="cell">库存26</div>
                   </td>
                   <td class="el-table_1_column_14 is-center ">
                     <div class="cell">
-                      <p data-v-ae31b1d4="" class="ReleaseBaby-operate">编辑信息</p>
+                      <p data-v-ae31b1d4="" class="ReleaseBaby-operate">更改链接</p>
                     </div>
                   </td>
                 </tr>
@@ -110,7 +110,6 @@ export default {
       imageUrlFour: "",
       imageUrlFive: "",
       fileList: [{name: ' ', url: ' '} ],
-      onPreview:"",
       dialogImageUrl: '',
         dialogVisible: false,
         handlePictureCardPreview:"",
@@ -136,7 +135,7 @@ export default {
             title: "金杯750最近大降价，省油技巧",
             text: "明天开始油价上身，金杯750可以小"
           },
-          date: "2016-05-02",
+          date: Date.now,
           collect: "560",
           Clicks: "6200",
           operate: "编辑信息"
@@ -352,6 +351,7 @@ border-bottom: 1px solid  #EBEBEB;
     color: white;
     border-radius: 4px;
     background-color: #fe5621;
+    cursor: pointer;
 }
 </style>
 

@@ -1,9 +1,10 @@
+<!--汽车订单详情-->
 <template>
   <div class="orderadmindetail">
         <el-row>
             <el-col :span="12">订单编号 ：26528464265421</el-col>
             <el-col align="right" :span="12">订单时间：2018-1-3 15:30</el-col>
-            <el-col :span="24">会 员 ID &nbsp ：965871</el-col>
+            <el-col :span="24">会 员 ID  ：5629841</el-col>
             <el-col :span="24" class="orderadmindetail-order">
                 <span>订单地址 :</span>
                 <span>赵俊 15300000000</span>
@@ -126,5 +127,8 @@ export default {
   margin-left: 20px;
   background-color:   #fe5621 ;
   border: none;
+}
+.el-icon-edit-outline{
+    cursor: pointer;
 }
 </style>

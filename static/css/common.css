@@ -2,6 +2,14 @@
     box-sizing: border-box !important;
     margin: 0px;
     padding: 0px;
+    font-family: MicrosoftYaHei;
+  }
+  .common .el-menu-item.is-active{
+    color: #fe5621
+  }
+  a{
+    text-decoration: none;
+    color: #333333;
   }
   .clearfix:after{
     content:""; 
@@ -16,6 +24,9 @@
 }
 .red{
   color: red;
+}
+.white{
+  color: white;
 }
 .clearfix{
     zoom:1;
@@ -104,9 +115,31 @@
   height: 125px;
   border-radius: 0px;
 }
-table {
-  width: 100% !important;
-}
 .el-table__body, .el-table__footer, .el-table__header{
   table-layout: auto !important;
+}
+.ReleaseButton .el-form-item__content{
+  width: 100px;
+  margin: 0 auto !important;
+}
+
+/* 登录 */
+.loginConter-top-conter .el-input__inner{
+  border:none !important;
+  background-color: #E5E6EA;
+}
+.loginConter-top-conter .el-form-item__content{
+  margin-left: 0px !important;
+  height: 100%;
+}
+.loginConter-top-conter .el-form-item__error{
+  left: 25%;
+}
+.loginConter-top-conter .el-form-item{
+  margin: 0px !important;
+  padding: 20px 0px;
+}
+.loginConter-top-conter .el-form-item .el-form-item__label{
+  font-size: 21px !important;
+  color:  #9D9DA0 ;
 }

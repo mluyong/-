@@ -2,7 +2,7 @@
     <div class="WarehourseGoods All">
         <el-row class="WarehourseGoods-form" :gutter="20">
             <el-col :span="8">
-                <label for="">产品名称</label>
+                <label for="">产品名称： </label>
                 <el-input v-model="formLabelAlign.name"></el-input>
             </el-col>
             <el-col :span="8">
@@ -36,23 +36,11 @@
             </el-col>
         </el-row>
         <el-tabs v-model="activeName" @tab-click="handleClick">
-             <el-tab-pane label="全部" name="first"></el-tab-pane>
-             <el-tab-pane label="已付款" name="second"></el-tab-pane>
-             <el-tab-pane label="待付款" name="third"></el-tab-pane>
-             <el-tab-pane label="待退款" name="fourth"></el-tab-pane>
-             <el-tab-pane label="已完成" name="fifth"></el-tab-pane>
-        </el-tabs>
-        <el-col class="WarehourseGoods-choice">
-            <el-button type="danger" plain>删除</el-button>
-            <el-button type="danger" plain>上架</el-button>
-            <el-button type="danger" plain>下架</el-button>
-            <el-button type="danger" plain>发布信息</el-button>
-        </el-col>
-         <el-table ref="multipleTable" align="center" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
-            <el-table-column align="right"  type="selection" width="40"> </el-table-column>
-            <el-table-column align="center" width="200"  prop="type" label="产品种类" >
+             <el-tab-pane label="全部" name="first">
+                <el-table ref="multipleTable" align="center" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+            <el-table-column align="center" width="200"  prop="type" label="订单编号" >
             </el-table-column>
-            <el-table-column align="center" width="500" label="信息名称">
+            <el-table-column align="center" width="500" label="产品信息">
                 <template slot-scope="scope">
                     <div class="WarehourseGoods-name-img"><img :src="scope.row.image" alt=""></div>
                     <div class="WarehourseGoods-name-center">
@@ -61,21 +49,141 @@
                     </div>
                 </template>
             </el-table-column>
-            <el-table-column align="center" prop="date" label="创建时间"> </el-table-column>
-            <el-table-column align="center" prop="collect" label="状态" >
-            </el-table-column>
-            <el-table-column align="center" prop="Clicks" label="库存" >
+            <el-table-column align="center"  label="交易信息">
                 <template slot-scope="scope">
-                    <span>{{scope.row.Clicks}}</span>
-                    <i class="el-icon-edit-outline colorE1"></i>
+                    <span>{{scope.row.date}}</span>
+                    <p>{{scope.row.username}}</p>
+                    <p>{{scope.row.orderstate}}</p>
                 </template>
             </el-table-column>
              <el-table-column align="center" label="操作" >
                 <template slot-scope="scope">
+                   <p class="Warehourse-integral">{{scope.row.integral}} <span class="goods-integral">积分</span></p>
                     <p class="Warehourse-operate">{{scope.row.operate}}</p>
                 </template>
             </el-table-column>
         </el-table>
+             </el-tab-pane>
+             <el-tab-pane label="已付款" name="second">
+                <el-table ref="multipleTable" align="center" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+            <el-table-column align="center" width="200"  prop="type" label="订单编号" >
+            </el-table-column>
+            <el-table-column align="center" width="500" label="产品信息">
+                <template slot-scope="scope">
+                    <div class="WarehourseGoods-name-img"><img :src="scope.row.image" alt=""></div>
+                    <div class="WarehourseGoods-name-center">
+                         <h5>{{scope.row.name.title}}</h5>
+                         <p>{{scope.row.name.text}}</p>
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column align="center"  label="交易信息">
+                <template slot-scope="scope">
+                    <span>{{scope.row.date}}</span>
+                    <p>{{scope.row.username}}</p>
+                    <p class="goodsorderdetail">{{scope.row.orderstate}}</p>
+                </template>
+            </el-table-column>
+             <el-table-column align="center" label="操作" >
+                <template slot-scope="scope">
+                   <p class="Warehourse-integral">{{scope.row.integral}} <span class="goods-integral">积分</span></p>
+                    <p class="Warehourse-operate">{{scope.row.operate}}</p>
+                </template>
+            </el-table-column>
+        </el-table>
+             </el-tab-pane>
+             <el-tab-pane label="待付款" name="third">
+                <el-table ref="multipleTable" align="center" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+            <el-table-column align="center" width="200"  prop="type" label="订单编号" >
+            </el-table-column>
+            <el-table-column align="center" width="500" label="产品信息">
+                <template slot-scope="scope">
+                    <div class="WarehourseGoods-name-img"><img :src="scope.row.image" alt=""></div>
+                    <div class="WarehourseGoods-name-center">
+                         <h5>{{scope.row.name.title}}</h5>
+                         <p>{{scope.row.name.text}}</p>
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column align="center"  label="交易信息">
+                <template slot-scope="scope">
+                    <span>{{scope.row.date}}</span>
+                    <p>{{scope.row.username}}</p>
+                    <p>{{scope.row.orderstate}}</p>
+                </template>
+            </el-table-column>
+             <el-table-column align="center" label="操作" >
+                <template slot-scope="scope">
+                   <p class="Warehourse-integral">{{scope.row.integral}} <span class="goods-integral">积分</span></p>
+                    <p class="Warehourse-operate">{{scope.row.operate}}</p>
+                </template>
+            </el-table-column>
+        </el-table>
+             </el-tab-pane>
+             <el-tab-pane label="待退款" name="fourth">
+                <el-table ref="multipleTable" align="center" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+            <el-table-column align="center" width="200"  prop="type" label="订单编号" >
+            </el-table-column>
+            <el-table-column align="center" width="500" label="产品信息">
+                <template slot-scope="scope">
+                    <div class="WarehourseGoods-name-img"><img :src="scope.row.image" alt=""></div>
+                    <div class="WarehourseGoods-name-center">
+                         <h5>{{scope.row.name.title}}</h5>
+                         <p>{{scope.row.name.text}}</p>
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column align="center"  label="交易信息">
+                <template slot-scope="scope">
+                    <span>{{scope.row.date}}</span>
+                    <p>{{scope.row.username}}</p>
+                    <p>{{scope.row.orderstate}}</p>
+                </template>
+            </el-table-column>
+             <el-table-column align="center" label="操作" >
+                <template slot-scope="scope">
+                   <p class="Warehourse-integral">{{scope.row.integral}} <span class="goods-integral">积分</span></p>
+                    <p class="Warehourse-operate">{{scope.row.operate}}</p>
+                </template>
+            </el-table-column>
+        </el-table>
+             </el-tab-pane>
+             <el-tab-pane label="已完成" name="fifth">
+                <el-table ref="multipleTable" align="center" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
+            <el-table-column align="center" width="200"  prop="type" label="订单编号" >
+            </el-table-column>
+            <el-table-column align="center" width="500" label="产品信息">
+                <template slot-scope="scope">
+                    <div class="WarehourseGoods-name-img"><img :src="scope.row.image" alt=""></div>
+                    <div class="WarehourseGoods-name-center">
+                         <h5>{{scope.row.name.title}}</h5>
+                         <p>{{scope.row.name.text}}</p>
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column align="center"  label="交易信息">
+                <template slot-scope="scope">
+                    <span>{{scope.row.date}}</span>
+                    <p>{{scope.row.username}}</p>
+                    <p class="goodsorderdetail">{{scope.row.orderstate}}</p>
+                </template>
+            </el-table-column>
+             <el-table-column align="center" label="操作" >
+                <template slot-scope="scope">
+                   <p class="Warehourse-integral">{{scope.row.integral}} <span class="goods-integral">积分</span></p>
+                    <p class="Warehourse-operate">{{scope.row.operate}}</p>
+                </template>
+            </el-table-column>
+        </el-table>
+             </el-tab-pane>
+        </el-tabs>
+        <!-- <el-col class="WarehourseGoods-choice">
+            <el-button type="danger" plain>删除</el-button>
+            <el-button type="danger" plain>上架</el-button>
+            <el-button type="danger" plain>下架</el-button>
+            <el-button type="danger" plain>发布信息</el-button>
+        </el-col> -->
+        
     </div>
 </template>
 
@@ -94,9 +202,10 @@ export default {
             text: "明天开始油价上身，金杯750可以小"
           },
           date: "2016-05-02",
-          collect: "560",
-          Clicks: "6200",
-          operate: "编辑信息"
+          integral: "2000",
+          operate: "发货",
+          username:"赵俊",
+          orderstate:"订单详情"
         },
         {
           list: "汽车",
@@ -107,9 +216,10 @@ export default {
             text: "明天开始油价上身，金杯750可以小"
           },
           date: "2016-05-02",
-          collect: "560",
-          Clicks: "6200",
-          operate: "编辑信息"
+          integral: "2000",
+          operate: "发货",
+          username:"赵俊",
+          orderstate:"订单详情"
         }
       ],
       multipleSelection: [],
@@ -138,6 +248,12 @@ export default {
 };
 </script>
 <style scoped>
+.WarehourseGoods-form{
+  min-width: 1300px;
+}
+.el-col .el-col-8{
+  padding-left: 0px;
+}
 .el-row{
   line-height: 60px;
 }
@@ -226,10 +342,10 @@ export default {
 }
 .WarehourseGoods .el-input {
   display: inline-block;
-  width: 70%;
+  width: 77%;
 }
 .WarehourseGoods div.el-date-editor {
-  width: 31% !important;
+  width: 35% !important;
 }
 .WarehourseGoods .WarehourseGoods-form.el-row {
   padding-top: 20px !important;
@@ -265,5 +381,18 @@ export default {
   font-size: 14px;
   line-height: 24px;
   margin: 0 10px 0 20px;
+}
+.Warehourse-integral{
+  font-size: 16px;
+}
+.Warehourse-integral span{
+  font-size: 14px;
+  color: #fe5621;
+}
+.Warehourse-integral,.Warehourse-operate{
+  cursor: pointer;
+}
+.goodsorderdetail{
+  cursor: pointer;
 }
 </style>

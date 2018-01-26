@@ -7,7 +7,7 @@
             <el-button type="danger" plain>发布信息</el-button>
         </el-col>
 
-        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="150px" class="demo-ruleForm Secure-pr-conter">
+        <el-form :model="ruleForm" ref="ruleForm" label-width="150px" class="demo-ruleForm Secure-pr-conter">
             <el-form-item label="">
               <h2 align="center">宝贝发布</h2>
             </el-form-item>
@@ -22,7 +22,7 @@
             <el-form-item label="上传主图">
                 <div class="Secure-pr-conter-upload">
                     <p><span>图片大小：750*420（px）</span><span>上传格式限：jpg png </span><span>文件大小限：10M</span></p>
-                    <el-upload action="https://jsonplaceholder.typicode.com/posts/" :drag="true" :limit="2" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
+                    <el-upload action="https://jsonplaceholder.typicode.com/posts/" :drag="true" :limit="3" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
                         <i class="el-icon-plus"></i>
                     </el-upload>
                     <el-dialog :visible.sync="dialogVisible" size="tiny">

@@ -1,265 +1,134 @@
+<!--汽车订单详情-->
 <template>
-    <div class="CarOrderAdmin All">
-        <el-row class="CarOrderAdmin-form" :gutter="20">
-            <el-col :span="8">
-                <label for="">订单编号：</label>
-                <el-input v-model="formLabelAlign.name"></el-input>
+  <div class="orderadmindetail">
+        <el-row>
+            <el-col :span="12">订单编号 ：26528464265421</el-col>
+            <el-col align="right" :span="12">订单时间：2018-1-3 15:30</el-col>
+            <el-col :span="24">会 员 ID &nbsp ：5629841</el-col>
+            <el-col :span="24" class="orderadmindetail-order">
+                <span>订单地址 :</span>
+                <span>赵俊 15300000000</span>
+                <span>浙江省杭州市余杭区米果科技园区3-115室</span>
+                <i class="el-icon-edit-outline colorE1"></i>
             </el-col>
-            <el-col :span="8">
-                <label for="">订单日期：</label>
-                <el-date-picker type="date" placeholder="选择日期" v-model="formLabelAlign.date1" ></el-date-picker>
-                    <div class="line" align="center"> 至 </div>
-                    <el-date-picker type="date" placeholder="选择日期" v-model="formLabelAlign.date2" ></el-date-picker>
+            <el-col :span="24" class="orderadmindetail-PR">
+                <div>产品信息:</div>
+                <div class="orderadmindetail-img">
+                    <img src="../../../static/image/car.png" alt="">
+                </div>
+                <div class="orderadmindetail-illustrate">
+                    <h5>东风日产-奇骏 2017款 2.5L CVT领先版 4WD</h5>
+                    <p>红色/2017款 2.5L CV领先版</p>
+                    <p>积分 <span>2000</span></p>
+                </div>
             </el-col>
-            <el-col :span="8">
-                <label for="">订单状态：</label>
-                <el-input v-model="formLabelAlign.name"></el-input>
-            </el-col>
-             <el-col :span="8">
-                <label for="">产品名称：</label>
-                <el-input v-model="formLabelAlign.name"></el-input>
-            </el-col>
-            <el-col :span="8">
-                <label for="">成交日期：</label>
-                <el-date-picker type="date" placeholder="选择日期" v-model="formLabelAlign.date1" ></el-date-picker>
-                    <div class="line" align="center"> 至 </div>
-                    <el-date-picker type="date" placeholder="选择日期" v-model="formLabelAlign.date2" ></el-date-picker>
-            </el-col>
-             <el-col :span="8">
-                <label for="">会 员 ID：</label>
-                <el-input v-model="formLabelAlign.name"></el-input>
-            </el-col>
-            <el-col :span="8">
-                <label for="">手 机 号：</label>
-                <el-input v-model="formLabelAlign.name"></el-input>
-            </el-col>
-            <el-col :span="8">
-                <label for="">成交积分：</label>
-                <el-date-picker type="date" placeholder="选择日期" v-model="formLabelAlign.date1" ></el-date-picker>
-                    <div class="line" align="center"> 至 </div>
-                    <el-date-picker type="date" placeholder="选择日期" v-model="formLabelAlign.date2" ></el-date-picker>
-            </el-col>
-            <el-col :span="24">
-                <el-button type="danger">搜索</el-button>
+            <el-col :span="24" class="orderadmindetail-express">
+                <span>快递单号:</span>
+                <span>中通 6220054151861</span>
+                <i class="el-icon-edit-outline colorE1"></i>
             </el-col>
         </el-row>
-        <el-tabs v-model="activeName" @tab-click="handleClick">
-             <el-tab-pane label="全部" name="first"></el-tab-pane>
-             <el-tab-pane label="已付款" name="second"></el-tab-pane>
-             <el-tab-pane label="待付款" name="third"></el-tab-pane>
-             <el-tab-pane label="待退款" name="fourth"></el-tab-pane>
-             <el-tab-pane label="已完成" name="fifth"></el-tab-pane>
-        </el-tabs>
-         <el-table ref="multipleTable" align="center" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
-            <el-table-column align="center" width="200"  prop="OrderID" label="订单编号" >
-            </el-table-column>
-            <el-table-column align="center" width="500" label="信息名称">
-                <template slot-scope="scope">
-                    <div class="CarOrderAdmin-name-img"><img :src="scope.row.image" alt=""></div>
-                    <div class="CarOrderAdmin-name-center">
-                         <h5>{{scope.row.name.title}}</h5>
-                         <p>{{scope.row.name.text}}</p>
-                    </div>
-                </template>
-            </el-table-column>
-            <el-table-column align="center" prop="Clicks" label="交易信息" >
-                <template slot-scope="scope">
-                    <p>{{scope.row.date}}</p>
-                    <p>{{scope.row.UserName}}</p>
-                     <p>{{scope.row.UserDetail}}</p>
-                </template>
-            </el-table-column>
-             <el-table-column align="center" label="操作" >
-                <template slot-scope="scope">
-                    <p>￥<span class="red">{{scope.row.price}}</span></p>
-                    <p class="information-operate">{{scope.row.operate}}</p>
-                </template>
-            </el-table-column>
-        </el-table>
-    </div>
+        <el-row>
+            <el-col :span="24" class="delivery">
+                <label> 请输入快递单号</label>
+                <el-input v-model="form.name" ></el-input>
+                <el-button type="primary">发货</el-button>
+                <el-button type="primary">无需物流</el-button>
+            </el-col>
+        </el-row>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {
-      activeName: "second",
-      tableData: [
-        {
-          OrderID: "26582452565285",
-          image: "../../../static/image/car.png",
-          UserName:'赵俊',
-          UserDetail:'订单详情',
-          name: {
-            title: "金杯750最近大降价，省油技巧",
-            text: "明天开始油价上身，金杯750可以小"
-          },
-          price:"2000",
-          date: "2016-05-02",
-          operate: "发货"
-        },
-       {
-          OrderID: "26582452565285",
-          image: "../../../static/image/car.png",
-          UserName:'赵俊',
-          UserDetail:'订单详情',
-          name: {
-            title: "金杯750最近大降价，省油技巧",
-            text: "明天开始油价上身，金杯750可以小"
-          },
-          price:"2000",
-          date: "2016-05-02",
-          operate: "发货"
-        },
-      ],
-      multipleSelection: [],
-      dynamicValidateForm: {
-        domains: [
-          {
-            value: ""
-          }
-        ]
-      },
-      labelPosition: "right",
-      formLabelAlign: {
-        name: "",
-        region: "",
-        type: "",
-        date1: "",
-        date2: ""
+      return {
+           form:{
+               name:""
+           }
       }
-    };
-  },
-  methods: {
-    handleClick(tab, event) {
-      console.log(tab, event);
-    }
   }
 };
 </script>
-<style scoped>
-.el-row{
-  line-height: 60px;
-}
-.bg-purple {
-  background-color: #fe5621;
-}
-.CarOrderAdmin {
-  min-width: 1200px;
-}
-.CarOrderAdmin-name-center h5 {
-  font-size: 16px;
-}
-.CarOrderAdmin-name-center p {
-  font-size: 14px;
-}
-.el-input__inner {
-  width: 232px;
-  height: 40px;
-  border-radius: 2px;
-}
-.CarOrderAdmin-name-img {
-  width: 100px;
-  height: 80px;
-  float: left;
-  color: #666666;
-  font-size: 14px;
-  text-align: left;
-}
-.CarOrderAdmin-name-img img {
-  width: 100%;
-  height: 100%;
-  vertical-align: middle;
-}
-.CarOrderAdmin-name-center {
-  float: left;
-}
-.CarOrderAdmin-name-center h5 {
-  color: #333333;
-  font-size: 16px;
-  font-family: MicrosoftYaHei;
-  text-align: left;
-  font-weight: normal;
-  padding-left: 24px;
-}
-.CarOrderAdmin-name-center p {
-  color: #666666;
-  font-size: 14px;
-  font-family: MicrosoftYaHei;
-  text-align: left;
-  padding-left: 24px;
-}
 
-.el-table {
-  color: #333333;
-}
-.CarOrderAdmin-operate {
-  text-align: center;
-  width: 72px;
-  margin: 0 auto;
-  font-size: 14px;
-  color: white;
-  border-radius: 4px;
-  background-color: #fe5621;
-}
-.el-checkbox span {
-  display: none;
-}
-.el-tabs__nav-scroll {
-  margin-left: 60px;
-}
-.el-tabs__item {
-  font-size: 16px;
-}
-.el-form-item__label {
+<style  scoped>
+ .orderadmindetail .el-row {
+  padding :10px 0px 70px 0;
+  border-bottom: 1px solid #F1F2F6;
   font-family: Adobe Heiti Std R;
 }
-.CarOrderAdmin .line {
-  width: 25px !important;
-  display: inline-block;
+ .orderadmindetail .el-row {
+  
+  font-family: Adobe Heiti Std R;
 }
-.CarOrderAdmin .el-row label {
+
+ .orderadmindetail .el-row  .el-col {
+  line-height: 45px;
   font-size: 14px;
-  display: inline-block;
-  text-align: right;
-  width: calc(100% - 80%);
+  padding: 0 40px;
 }
-.CarOrderAdmin .el-input {
-  display: inline-block;
-  width: 70%;
+.orderadmindetail-order i{
+    padding-left: 22px;
 }
-.CarOrderAdmin div.el-date-editor {
-  width: 31% !important;
+  .orderadmindetail .el-row  .orderadmindetail-PR{
+    line-height: 20px;
+    padding-top: 10px;
 }
-.CarOrderAdmin .CarOrderAdmin-form.el-row {
-  padding-top: 20px !important;
-  margin: 0px !important;
+.orderadmindetail-PR div{
+    float: left;
 }
-.CarOrderAdmin .CarOrderAdmin-form .el-col-24 {
-  margin: 50px auto 10px auto;
-  text-align: center;
+.orderadmindetail-PR div:nth-of-type(2){
+    width: 100px;
+    height: 80px;
 }
-.CarOrderAdmin .CarOrderAdmin-form .el-col-24 .el-button {
-  border-radius: 8px;
-  padding: 5px 30px;
-  font-size: 16px;
+.orderadmindetail-PR div:nth-of-type(2) img{
+    width: 100%;
+    padding-left: 8px;
 }
-.Warehourse-operate{
-    text-align: center;
-    width: 72px;
-    margin: 0 auto;
-    font-size: 14px;
-    color: white;
-    border-radius: 4px;
-    background-color: #fe5621;
+.orderadmindetail-PR div:nth-of-type(3){
+    padding-left: 24px;
 }
-.information-operate{
-    text-align: center;
-    width: 72px;
-    margin: 0 auto;
-    font-size: 14px;
-    color: white;
-    border-radius: 4px;
-    background-color: #fe5621;
+.orderadmindetail-PR h5{
+    font-size: 16px;
+    font-weight: normal;
+    color:   #333333 ;
+    
+} 
+.orderadmindetail-order span:nth-of-type(2){
+    padding-left: 9px;
+}
+.orderadmindetail-order span:nth-of-type(3){
+    padding-left: 35px;
+}
+.orderadmindetail-illustrate p:nth-child(2){
+    line-height: 10px;
+    color: #666666;
+}
+.orderadmindetail-illustrate p:nth-child(3){
+    margin-top: 25px;
+}
+.orderadmindetail-illustrate p:nth-child(3) span{
+    color: #ff0000;
+    font-size: 18px;
+}
+.orderadmindetail-express span:nth-of-type(2){
+   margin-left: 6px;
+}
+.orderadmindetail-express  i{
+    padding-left: 31px;
+}
+.delivery .el-input {
+    display: inline-block;
+    width: 310px;
+    height: 30px !important;
+}
+.delivery .el-button{
+  padding: 6px 15px;
+  margin-left: 20px;
+  background-color:   #fe5621 ;
+  border: none;
+}
+.el-icon-edit-outline{
+    cursor: pointer;
 }
 </style>

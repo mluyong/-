@@ -1,0 +1,328 @@
+<template>
+     <div class="Car-pr">
+        <el-form :model="CarForm" :rules="rules" ref="CarForm" label-width="150px" class="demo-CarForm Car-pr-conter">
+            <el-form-item label="">
+              <h2 align="center">优惠券发布</h2>
+            </el-form-item>
+            
+            <el-form-item label="宝贝名称" prop="name">
+                <el-input v-model="CarForm.name"></el-input>
+            </el-form-item>
+            <el-form-item label="宝贝介绍" prop="introduce">
+                <el-input type="textarea" v-model="CarForm.introduce"></el-input>
+            </el-form-item>
+             <el-form-item label="宝贝款式价格">
+                <div class="Car-pr-conter-money">
+                    <div class="Car-pr-conter-money-div" v-for="domain in CarForm.domains" :key="domain.key">
+                          <div><label for="">款式名称</label><input type="text" v-model="domain.name"></div>
+                          <div><label for="">颜色</label><input type="text" v-model="domain.color"></div>
+                          <div><label for="">价格（万）</label><input type="text"></div>
+                          <i @click.prevent="removeDomain(domain)" class="el-icon-circle-close"></i>
+                    </div>
+                    <p><i @click="addDomain()" class="el-icon-circle-plus"></i></p>
+                </div>
+            </el-form-item>
+            <el-form-item label="经销商参考价" prop="dealerPrice" :rules="dealerPrice">
+                <el-input placeholder="请输入参考价" v-model.number="CarForm.dealerPrice">
+                    <template slot="append">万</template>
+                </el-input>
+            </el-form-item>
+            <el-form-item label="厂商参考价" prop="firmPrice" :rules="firmPrice">
+                <el-input placeholder="请输入内容" v-model.number="CarForm.firmPrice">
+                    <template slot="append">万</template>
+                </el-input>
+            </el-form-item>
+            <el-form-item label="全款购车" >
+                <el-input placeholder="请输入厂商参考价" v-model="CarForm.allPrice">
+                    <template slot="append">万</template>
+                </el-input>
+            </el-form-item>
+            <el-form-item class="car-two" label="贷款购车" >
+                <el-input class="car-two-left" placeholder="请输入贷款购车价钱" v-model="CarForm.loanCarPrice">
+                    <template slot="append">万</template>
+                </el-input>
+                <el-input class="car-two-right" placeholder="请输入还款期数" v-model="CarForm.loanCarStage">
+                    <template slot="append">期</template>
+                </el-input>
+            </el-form-item>
+            <el-form-item label="商品数量" prop="number" :rules="number">
+                <el-input placeholder="请输入内容" v-model.number="CarForm.number">
+                </el-input>
+            </el-form-item>
+            
+            
+            <el-form-item label="上传主图">
+                <div class="Car-pr-conter-upload">
+                    <p><span>图片大小：750*420（px）</span><span>上传格式限：jpg png </span><span>文件大小限：10M</span></p>
+                    <el-upload action="https://jsonplaceholder.typicode.com/posts/" :drag="true" :limit="3" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
+                        <i class="el-icon-plus"></i>
+                    </el-upload>
+                    <el-dialog :visible.sync="dialogVisible" size="tiny">
+                    <img width="100%" :src="dialogImageUrl" alt="">
+                    </el-dialog>
+                </div>
+            </el-form-item>
+            <el-form-item label="详情设置"><br>
+                <div class="Car-pr-conter-quill">
+                    <quill-editor ref="myTextEditor" v-model="content" :config="editorOption"></quill-editor>
+                </div>
+            </el-form-item>
+            <el-form-item label="选择车辆" >
+              <el-select v-model="CarForm.CarType" placeholder="请选择活动区域">
+                <el-option label="区域一" ></el-option>
+                <el-option label="区域二" ></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item class="ReleaseButton">
+                <el-button type="primary" @click="submitForm('CarForm')">立即发布</el-button>
+            </el-form-item>
+            
+        </el-form>
+        
+    </div>
+</template>
+
+<script>
+import { quillEditor } from "vue-quill-editor";
+export default {
+  props:['value'],
+  data() {
+    return {
+      content: "",
+      editorOption: {},
+      dialogImageUrl: "",
+      dialogVisible: false,
+      CarForm: {
+        name: "",
+        // 宝贝介绍
+        introduce: "",
+        // 经销商参考价
+        dealerPrice: "",
+        // 厂商参考价
+        firmPrice: "",
+        // 全款购车
+        allPrice: "",
+        // 贷款购车价格
+        loanCarPrice: "",
+        // 贷款购车还款期数
+        loanCarStage: "",
+        // 发布宝贝数量
+        number: "",
+        // 选择车辆
+        CarType:"",
+        domains: [{ name: "汽车", color: "黑色", price: "100" }]
+      },
+      rules: {
+        name: [
+          { required: true, message: "请输入宝贝名称", trigger: "blur" },
+          { min: 3, max: 20, message: "长度在 3 到 10 个字符", trigger: "blur" }
+        ],
+        introduce: [
+          { required: true, message: "请输入宝贝介绍", trigger: "blur" }
+        ],
+        dealerPrice: [
+          { required: true, message: "请输入经销商参考价" },
+          { type: "number", message: "经销商参考价必须为数字值" }
+        ],
+        firmPrice: [
+          { required: true, message: "请输入厂商参考价" },
+          { type: "number", message: "厂商参考价必须为数字值" }
+        ],
+        number: [
+          { required: true, message: "请输入发布宝贝数量" },
+          { type: "number", message: "发布宝贝数量必须为数字值" }
+        ],
+      }
+    };
+  },
+  methods: {
+    removeDomain(item) {
+      var index = this.CarForm.domains.indexOf(item);
+      if (index !== -1) {
+        this.CarForm.domains.splice(index, 1);
+      }
+    },
+    addDomain() {
+      this.CarForm.domains.push({
+        value: "",
+        key: Date.now()
+      });
+    },
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        // console.log(valid)
+        if (valid) {
+          alert("submit!");
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
+    dealerPrice(){},
+    firmPrice(){},
+    number(){}
+  },
+  computed: {
+    editor() {
+      return this.$refs.myTextEditor.quillEditor;
+    }
+  },
+  components: {
+    quillEditor
+  }
+};
+</script>
+
+<style>
+.Car-pr{
+  padding-top: 20px;
+}
+.Car-pr .Car-pr-choice {
+  padding: 14px 0px 14px 25px;
+  border-bottom: 1px solid #ebebeb;
+}
+.Car-pr .Car-pr-choice .el-button {
+  padding: 0px 15px;
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 24px;
+  margin: 0 10px 0 20px;
+}
+.Car-pr .el-input,
+.Car-pr .el-textarea {
+  width: 600px;
+  border-radius: 2px;
+}
+
+.Car-pr .Car-pr-conter-money {
+  width: 600px;
+  border: 1px solid #cccccc;
+  border-radius: 2px;
+  padding: 10px;
+}
+.Car-pr .Car-pr-conter-money .Car-pr-conter-money-div {
+  width: 100%;
+  display: inline-block;
+  font-size: 0px;
+  color: white;
+  line-height: 14px;
+}
+.Car-pr .Car-pr-conter-money .Car-pr-conter-money-div div {
+  display: inline-block;
+  width: calc(100% / 3 - 20px);
+  margin-right: 10px;
+  background-color: #999999;
+  border: none;
+  padding: 0 10px;
+  font-size: 14px;
+  line-height: 24px;
+  color: RGBA(255, 255, 255, 1);
+  border-radius: 2px;
+}
+.Car-pr .Car-pr-conter-money .Car-pr-conter-money-div > i {
+  font-size: 20px;
+  line-height: 24px;
+  color: #999999;
+}
+.Car-pr .Car-pr-conter-money .Car-pr-conter-money-div > div label {
+  display: inline-block;
+  width: 50%;
+}
+.Car-pr .Car-pr-conter-money .Car-pr-conter-money-div > div input {
+  display: inline-block;
+  width: 50%;
+  background-color: #999999;
+  border: none;
+  color: RGBA(255, 255, 255, 1);
+}
+.Car-pr .Car-pr-conter-money > p {
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  line-height: 45px;
+}
+.Car-pr .el-input-group__append,
+.Car-pr .el-input-group__prepend {
+  background-color: white;
+}
+.Car-pr .Car-pr-conter-upload {
+  width: 600px;
+  background-color: #f9f9f9;
+  border: 1px solid #cccccc;
+}
+.el-upload-list--picture-card .el-upload-list__item {
+  width: 120px;
+  height: 80px;
+}
+.el-upload--picture-card,
+.el-upload-dragger {
+  width: 120px;
+  height: 80px;
+  line-height: 80px;
+}
+.Car-pr-conter-upload > p {
+  padding: 0 10px;
+  font-size: 14px;
+  line-height: 16px;
+}
+.Car-pr-conter-upload > div {
+  padding: 10px;
+}
+.Car-pr-conter-upload > p > span {
+  display: inline-block;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  color: #333333;
+}
+.Car-pr-conter-upload > p > span:last-child {
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+.Car-pr .Car-pr-conter .el-upload-dragger {
+  border: 1px solid #fe5621;
+}
+.Car-pr .Car-pr-conter .el-upload--picture-card {
+  border: none;
+}
+.Car-pr .Car-pr-conter-quill {
+  width: 665px !important;
+  margin: 0 -66px;
+}
+.Car-pr .Car-pr-conter-quill p {
+  padding-bottom: 20px;
+}
+.Car-pr .el-form {
+  width: 50%;
+  margin: 0 auto;
+  min-width: 800px;
+}
+.Car-pr .el-form .car-two .car-two-left {
+  width: 350px;
+}
+.Car-pr .el-form .car-two .car-two-right {
+  width: 225px;
+  margin-left: 20px;
+}
+.Car-pr .el-form .el-form-item:first-child {
+  margin: 0px;
+}
+.Car-pr .el-form .el-form-item:first-child h2 {
+  width: 600px;
+  font-size: 18px;
+  font-weight: normal;
+  padding-bottom: 5px;
+  color: #333333;
+}
+.ql-container {
+  min-height: 300px;
+}
+</style>
